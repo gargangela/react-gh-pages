@@ -12,7 +12,8 @@ constructor() {
   super()
   this.state = {
     todos: todosData,
-    isLoading: true
+    isLoading: true, 
+    unreadMessages: ["a","b"]
   }
   this.handleChange = this.handleChange.bind(this)
 }
@@ -51,6 +52,14 @@ handleChange(id) {
           <h1>Loading...</h1> :
           <Conditional />}
         </div>
+        <div>
+                {
+                    this.state.unreadMessages.length > 0 && 
+                    <h2>You have {this.state.unreadMessages.length} unread messages!</h2>
+                }
+            </div>
+
+
       </div>
    
     );
