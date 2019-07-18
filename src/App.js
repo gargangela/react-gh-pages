@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoItem from "./TodoItem";
 import todosData from "./todosData";
+import Conditional from "./Conditional";
 
 // import logo from './logo.svg';
 import './App.css';
@@ -10,11 +11,20 @@ class App extends Component {
 constructor() {
   super()
   this.state = {
-    todos: todosData
+    todos: todosData,
+    isLoading: true
   }
   this.handleChange = this.handleChange.bind(this)
 }
 
+    
+componentDidMount() {
+  setTimeout(() => {
+      this.setState({
+          isLoading: false
+      })
+  }, 1500)
+}
 
 handleChange(id) {
   this.setState(prevState => {
@@ -36,7 +46,13 @@ handleChange(id) {
     return (
       <div className="todo-list">
         {todoItems}
+        <div>
+          {this.state.isLoading ?
+          <h1>Loading...</h1> :
+          <Conditional />}
+        </div>
       </div>
+   
     );
   }
 }
